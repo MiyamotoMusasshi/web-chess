@@ -1,15 +1,15 @@
-//типы для удобства
-type coordinatesY = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-type coordinatesX = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
-type coordinates = { x: coordinatesX; y: coordinatesY };
-type color = "black" | "white";
+import type { Coordinates } from "@/types/chess";
+import type { CoordinatesX } from "@/types/chess";
+import type { CoordinatesY } from "@/types/chess";
+import type { Color } from "@/types/chess";
+import type { PieceType } from "@/types/chess";
 
 //Создаю класс клетки, т.к считаю, что в будущем можно будет использовать для перемещения фигур
 class Cell {
-  private cordinates: coordinates;
-  private color: color;
+  private cordinates: Coordinates;
+  private color: Color;
 
-  constructor(x: coordinatesX, y: coordinatesY, color: color) {
+  constructor(x: CoordinatesX, y: CoordinatesY, color: Color) {
     this.cordinates = { x: x, y: y };
     this.color = color;
   }
@@ -22,32 +22,32 @@ class Cell {
     return this.color;
   }
 
-  public setCordinates(x: coordinatesX, y: coordinatesY) {
+  public setCordinates(x: CoordinatesX, y: CoordinatesY) {
     this.cordinates = { x: x, y: y };
   }
 
-  public setColor(newColor: color) {
+  public setColor(newColor: Color) {
     this.color = newColor;
   }
 }
 //Создаю массивы, чтобы нарисовать все клетки на доске
-const alfX: coordinatesX[] = ["a", "b", "c", "d", "e", "f", "g", "h"];
-const alfY: coordinatesY[] = [1, 2, 3, 4, 5, 6, 7, 8];
-const blackWhite: color[] = ["white", "black"];
+const alfX: CoordinatesX[] = ["a", "b", "c", "d", "e", "f", "g", "h"];
+const alfY: CoordinatesY[] = [1, 2, 3, 4, 5, 6, 7, 8];
+const blackWhite: Color[] = ["black", "white"];
 
 //реверсы нужно для правильного расположения клеток
 alfX.reverse();
+const cells: Cell[] = [];
+//добавляем все клетки в массив
+
+alfY.map((y: CoordinatesY) =>
+  alfX.map((x: CoordinatesX, index) =>
+    cells.push(new Cell(x, y, blackWhite[(index + y) % 2])),
+  ),
+);
+
+cells.reverse();
 export default function Home() {
-  const cells: Cell[] = [];
-  //добавляем все клетки в массив
-
-  alfY.map((y: coordinatesY) =>
-    alfX.map((x: coordinatesX, index) =>
-      cells.push(new Cell(x, y, blackWhite[(index + y) % 2]))
-    )
-  );
-
-  cells.reverse();
   return (
     <main>
       <div
@@ -64,6 +64,7 @@ export default function Home() {
             style={{
               backgroundColor: cell.getColor(),
               color: "gray",
+              userSelect: "none",
             }}
           >
             {cell.getCordinates().x + "," + cell.getCordinates().y}
