@@ -18,7 +18,7 @@ export class Pawn extends Figure {
 
       if (newY >= 1 && newY <= 8 && newY2 >= 1 && newY2 <= 8) {
         const newYValue = newY as CoordinatesY;
-        const newY2Value = newY as CoordinatesY;
+        const newY2Value = newY2 as CoordinatesY;
         moves.push({ x: this.cordinates.x, y: newYValue });
         moves.push({ x: this.cordinates.x, y: newY2Value });
       }
@@ -34,22 +34,35 @@ export class Pawn extends Figure {
     figures.map((figure: Figure) => {
       const tmpX = this.xMap.indexOf(figure.getCordinates().x);
       const tmpY = figure.getCordinates().y;
+      const tmpColor = figure.getColor();
 
       if (
-        (this.color == "white" && x + 1 == tmpX && y + 1 == tmpY) ||
-        (this.color == "white" && x - 1 == tmpX && y + 1 == tmpY) ||
-        (this.color == "black" && x + 1 == tmpX && y - 1 == tmpY) ||
-        (this.color == "white" && x - 1 == tmpX && y - 1 == tmpY)
+        (this.color == "white" &&
+          x + 1 == tmpX &&
+          y + 1 == tmpY &&
+          tmpColor == "black") ||
+        (this.color == "white" &&
+          x - 1 == tmpX &&
+          y + 1 == tmpY &&
+          tmpColor == "black") ||
+        (this.color == "black" &&
+          x + 1 == tmpX &&
+          y - 1 == tmpY &&
+          tmpColor == "white") ||
+        (this.color == "white" &&
+          x - 1 == tmpX &&
+          y - 1 == tmpY &&
+          tmpColor == "black")
       ) {
         moves.push({
           x: figure.getCordinates().x,
           y: figure.getCordinates().y,
         });
       } else if (
-        (this.color == "white" && y + 1 == tmpY) ||
-        (this.color == "black" && y - 1 == tmpY) ||
-        (this.color == "white" && y == 2 && tmpY == y + 2) ||
-        (this.color == "black" && y == 2 && tmpY == y - 2)
+        (this.color == "white" && y + 1 == tmpY && x == tmpX) ||
+        (this.color == "black" && y - 1 == tmpY && x == tmpX) ||
+        (this.color == "white" && y == 2 && tmpY == y + 2 && x == tmpX) ||
+        (this.color == "black" && y == 2 && tmpY == y - 2 && x == tmpX)
       ) {
         moves.splice(moves.indexOf({ x: this.cordinates.x, y: tmpY }));
       }
