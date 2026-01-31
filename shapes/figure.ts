@@ -5,9 +5,9 @@ import type { PieceType } from "@/types/chess";
 import type { Color } from "@/types/chess";
 
 export abstract class Figure {
-  protected cordinates: Coordinates;
-  protected color: Color;
-  protected type: PieceType;
+  private cordinates: Coordinates;
+  private color: Color;
+  private type: PieceType;
   protected xMap: CoordinatesX[] = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
   constructor(cordinates: Coordinates, color: Color, type: PieceType) {
@@ -22,6 +22,10 @@ export abstract class Figure {
 
   public getColor() {
     return this.color;
+  }
+
+  public getType() {
+    return this.type;
   }
 
   public setCordinates(cordinates: Coordinates) {
