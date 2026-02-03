@@ -1,4 +1,5 @@
 import { Pawn } from "../shapes/Pawn";
+import { Rook } from "../shapes/Rook";
 import type { Coordinates } from "@/types/chess";
 
 //тесты белых пешок
@@ -170,5 +171,144 @@ describe("Черные пешки", () => {
     expect(testBPawn1forFifthTest.hasMoved(testBArrayforFifthTest)).toEqual(
       resultBArrayForFifthTest,
     );
+  });
+});
+
+describe("ладьи", () => {
+  const lzdwzlxghtdsvsngwhjn = new Rook({ x: "a", y: 1 }, "white", "rook");
+
+  const testArrayjtcedacwanwltawafimu = [lzdwzlxghtdsvsngwhjn];
+
+  const resultArraysmjvohvwsbdcuiyeozqw = [
+    { x: "b", y: 1 },
+    { x: "c", y: 1 },
+    { x: "d", y: 1 },
+    { x: "e", y: 1 },
+    { x: "f", y: 1 },
+    { x: "g", y: 1 },
+    { x: "h", y: 1 },
+    { x: "a", y: 2 },
+    { x: "a", y: 3 },
+    { x: "a", y: 4 },
+    { x: "a", y: 5 },
+    { x: "a", y: 6 },
+    { x: "a", y: 7 },
+    { x: "a", y: 8 },
+  ];
+
+  test("белая(ый) ладья стоит на a1,белая(ый) ладья может пойти на b1,c1,d1,e1,f1,g1,h1,a2,a3,a4,a5,a6,a7,a8,", () => {
+    expect(
+      lzdwzlxghtdsvsngwhjn.hasMoved(testArrayjtcedacwanwltawafimu),
+    ).toEqual(resultArraysmjvohvwsbdcuiyeozqw);
+  });
+  const mxzsubsugqrcvppuxiyd = new Rook({ x: "d", y: 4 }, "white", "rook");
+
+  const testArrayrkrrdjppgrskeawwpkiz = [mxzsubsugqrcvppuxiyd];
+
+  const resultArrayxyampmqmptdyootflgwi = [
+    { x: "e", y: 4 },
+    { x: "f", y: 4 },
+    { x: "g", y: 4 },
+    { x: "h", y: 4 },
+    { x: "c", y: 4 },
+    { x: "b", y: 4 },
+    { x: "a", y: 4 },
+    { x: "d", y: 5 },
+    { x: "d", y: 6 },
+    { x: "d", y: 7 },
+    { x: "d", y: 8 },
+    { x: "d", y: 3 },
+    { x: "d", y: 2 },
+    { x: "d", y: 1 },
+  ];
+
+  test("белая(ый) ладья стоит на d4,белая(ый) ладья может пойти на e4,f4,g4,h4,c4,b4,a4,d5,d6,d7,d8,d3,d2,d1,", () => {
+    expect(
+      mxzsubsugqrcvppuxiyd.hasMoved(testArrayrkrrdjppgrskeawwpkiz),
+    ).toEqual(resultArrayxyampmqmptdyootflgwi);
+  });
+  const lwfxxvlkgqpagyngoacz = new Rook({ x: "e", y: 4 }, "white", "rook");
+
+  const nhebxhurwwwasghynhba = new Rook({ x: "e", y: 5 }, "white", "rook");
+
+  const qgyvitvaugbgzyfmdhoa = new Rook({ x: "d", y: 4 }, "black", "rook");
+
+  const qltkvswsyvluiopvcnhr = new Rook({ x: "f", y: 4 }, "black", "rook");
+
+  const mnmkukxofzcogxbhejgi = new Rook({ x: "e", y: 3 }, "black", "rook");
+
+  const testArrayerugxpiwofvtmqtarabe = [
+    lwfxxvlkgqpagyngoacz,
+    nhebxhurwwwasghynhba,
+    qgyvitvaugbgzyfmdhoa,
+    qltkvswsyvluiopvcnhr,
+    mnmkukxofzcogxbhejgi,
+  ];
+
+  const resultArraywlatmihfvxrxksspzxgx = [
+    { x: "f", y: 4 },
+    { x: "d", y: 4 },
+    { x: "e", y: 3 },
+  ];
+
+  test("белая(ый) ладья стоит на e4,белая(ый) ладья стоит на e5,черная(ый) ладья стоит на d4,черная(ый) ладья стоит на f4,черная(ый) ладья стоит на e3,белая(ый) ладья может пойти на f4,d4,e3,", () => {
+    expect(
+      lwfxxvlkgqpagyngoacz.hasMoved(testArrayerugxpiwofvtmqtarabe),
+    ).toEqual(resultArraywlatmihfvxrxksspzxgx);
+  });
+  const fddxsdirgfccgpsyitzs = new Rook({ x: "e", y: 8 }, "white", "rook");
+
+  const ujiecjmrdlaczbndjsyu = new Rook({ x: "f", y: 8 }, "white", "rook");
+
+  const imgzglcfbunniovqpbmz = new Rook({ x: "d", y: 8 }, "white", "rook");
+
+  const drrcvhkhadmbbnljxpqx = new Rook({ x: "e", y: 7 }, "white", "rook");
+
+  const testArrayqntggprbxamgnfcrmvvx = [
+    fddxsdirgfccgpsyitzs,
+    ujiecjmrdlaczbndjsyu,
+    imgzglcfbunniovqpbmz,
+    drrcvhkhadmbbnljxpqx,
+  ];
+
+  const resultArrayqykfvmlgmimcrpxzbctt: Coordinates[] = [];
+
+  test("белая(ый) ладья стоит на e8,белая(ый) ладья стоит на f8,белая(ый) ладья стоит на d8,белая(ый) ладья стоит на e7,белая(ый) ладья может пойти на ", () => {
+    expect(
+      fddxsdirgfccgpsyitzs.hasMoved(testArrayqntggprbxamgnfcrmvvx),
+    ).toEqual(resultArrayqykfvmlgmimcrpxzbctt);
+  });
+  const imoagoqhhvauylorlhtm = new Rook({ x: "g", y: 7 }, "black", "rook");
+
+  const bhpmwfpaykkffffmlbpa = new Rook({ x: "g", y: 8 }, "black", "rook");
+
+  const mjvttoyzpyutnqcxysjy = new Rook({ x: "h", y: 7 }, "black", "rook");
+
+  const pnksqxwvhfbljszrydnp = new Rook({ x: "g", y: 4 }, "white", "rook");
+
+  const ctggsnlzgylrmtgizfzk = new Rook({ x: "c", y: 7 }, "white", "rook");
+
+  const testArrayhgzumislumujfrkcwtsf = [
+    imoagoqhhvauylorlhtm,
+    bhpmwfpaykkffffmlbpa,
+    mjvttoyzpyutnqcxysjy,
+    pnksqxwvhfbljszrydnp,
+    ctggsnlzgylrmtgizfzk,
+  ];
+
+  const resultArraydxdjrsxffvbtmgbsawrj = [
+    { x: "f", y: 7 },
+    { x: "e", y: 7 },
+    { x: "d", y: 7 },
+    { x: "c", y: 7 },
+    { x: "g", y: 6 },
+    { x: "g", y: 5 },
+    { x: "g", y: 4 },
+  ];
+
+  test("черная(ый) ладья стоит на g7,черная(ый) ладья стоит на g8,черная(ый) ладья стоит на h7,белая(ый) ладья стоит на g4,белая(ый) ладья стоит на c7,черная(ый) ладья может пойти на f7,e7,d7,c7,g6,g5,g4,", () => {
+    expect(
+      imoagoqhhvauylorlhtm.hasMoved(testArrayhgzumislumujfrkcwtsf),
+    ).toEqual(resultArraydxdjrsxffvbtmgbsawrj);
   });
 });
