@@ -1,5 +1,6 @@
 import { Pawn } from "../shapes/Pawn";
 import { Rook } from "../shapes/Rook";
+import { Bishop } from "../shapes/Bishop";
 import type { Coordinates } from "@/types/chess";
 
 //тесты белых пешок
@@ -310,5 +311,125 @@ describe("ладьи", () => {
     expect(
       imoagoqhhvauylorlhtm.hasMoved(testArrayhgzumislumujfrkcwtsf),
     ).toEqual(resultArraydxdjrsxffvbtmgbsawrj);
+  });
+});
+
+describe("Тесты слонов", () => {
+  const qtwbugypmgcbnjkrcvii = new Bishop({ x: "d", y: 5 }, "white", "bishop");
+
+  const testArraysnkaxbszlpapajywtywl = [qtwbugypmgcbnjkrcvii];
+
+  const resultArrayxagvudjepjzvdjiloylv = [
+    { x: "e", y: 6 },
+    { x: "f", y: 7 },
+    { x: "g", y: 8 },
+    { x: "c", y: 6 },
+    { x: "b", y: 7 },
+    { x: "a", y: 8 },
+    { x: "e", y: 4 },
+    { x: "f", y: 3 },
+    { x: "g", y: 2 },
+    { x: "h", y: 1 },
+    { x: "c", y: 4 },
+    { x: "b", y: 3 },
+    { x: "a", y: 2 },
+  ];
+
+  test("белая(ый) слон стоит на d4,белая(ый) слон может пойти на e6,f7,g8,c6,b7,a8,e4,f3,g2,h1,c4,b3,a2,", () => {
+    expect(
+      qtwbugypmgcbnjkrcvii.hasMoved(testArraysnkaxbszlpapajywtywl),
+    ).toEqual(resultArrayxagvudjepjzvdjiloylv);
+  });
+  const uuyhtncjhasphjliccrp = new Bishop({ x: "a", y: 8 }, "black", "bishop");
+
+  const lacsdeckovogfnztllta = new Bishop({ x: "d", y: 5 }, "white", "bishop");
+
+  const testArrayiqwzvorwpfdaahyeutcu = [
+    uuyhtncjhasphjliccrp,
+    lacsdeckovogfnztllta,
+  ];
+
+  const resultArrayzrficlnpiwyjiwosvfpo = [
+    { x: "b", y: 7 },
+    { x: "c", y: 6 },
+    { x: "d", y: 5 },
+  ];
+
+  test("черная(ый) слон стоит на a8,белая(ый) слон стоит на d5,черная(ый) слон может пойти на b7,c6,d5,", () => {
+    expect(
+      uuyhtncjhasphjliccrp.hasMoved(testArrayiqwzvorwpfdaahyeutcu),
+    ).toEqual(resultArrayzrficlnpiwyjiwosvfpo);
+  });
+  const iunlzcanmlkyjxlfjbtn = new Bishop({ x: "d", y: 5 }, "white", "bishop");
+
+  const xbzmezytvsydjdebfpkh = new Bishop({ x: "e", y: 4 }, "white", "bishop");
+
+  const ekrxxityoccafccksepm = new Bishop({ x: "e", y: 6 }, "white", "bishop");
+
+  const rtkmrbpykldztacmbemt = new Bishop({ x: "c", y: 6 }, "white", "bishop");
+
+  const rzovsgtrgbrnrfjxghud = new Bishop({ x: "c", y: 4 }, "black", "bishop");
+
+  const testArrayqqayvcellwoxfaysaidk = [
+    iunlzcanmlkyjxlfjbtn,
+    xbzmezytvsydjdebfpkh,
+    ekrxxityoccafccksepm,
+    rtkmrbpykldztacmbemt,
+    rzovsgtrgbrnrfjxghud,
+  ];
+
+  const resultArrayfqlfxrrkxworxjvgkqhv = [{ x: "c", y: 4 }];
+
+  test("белая(ый) слон стоит на d5,белая(ый) слон стоит на e4,белая(ый) слон стоит на e6,белая(ый) слон стоит на c6,черная(ый) слон стоит на c4,белая(ый) слон может пойти на c4,", () => {
+    expect(
+      iunlzcanmlkyjxlfjbtn.hasMoved(testArrayqqayvcellwoxfaysaidk),
+    ).toEqual(resultArrayfqlfxrrkxworxjvgkqhv);
+  });
+  const bomcjhcqmrvcnuyqlouy = new Bishop({ x: "h", y: 8 }, "black", "bishop");
+
+  const lrmlruchtqytzskekrvw = new Bishop({ x: "g", y: 7 }, "black", "bishop");
+
+  const testArrayqyvhyiqttioniejglury = [
+    bomcjhcqmrvcnuyqlouy,
+    lrmlruchtqytzskekrvw,
+  ];
+
+  const resultArrayljkjqjkmbzbafsqjyswa: Coordinates[] = [];
+
+  test("черная(ый) слон стоит на h8,черная(ый) слон стоит на g7,черная(ый) слон может пойти на ", () => {
+    expect(
+      bomcjhcqmrvcnuyqlouy.hasMoved(testArrayqyvhyiqttioniejglury),
+    ).toEqual(resultArrayljkjqjkmbzbafsqjyswa);
+  });
+  const hderimlmounhsownyksz = new Bishop({ x: "f", y: 3 }, "white", "bishop");
+
+  const yixhnbkcxrarlainbfjm = new Bishop({ x: "g", y: 2 }, "white", "bishop");
+
+  const najiuwodeqswituyntzx = new Bishop({ x: "g", y: 4 }, "white", "bishop");
+
+  const kizwkafllrfvtdutsnob = new Bishop({ x: "e", y: 4 }, "white", "bishop");
+
+  const ybgrkrhbdavvkrqrlgtp = new Bishop({ x: "e", y: 2 }, "white", "bishop");
+
+  const rofhouxlyfgpqbqkvrzm = new Bishop({ x: "g", y: 3 }, "black", "bishop");
+
+  const cgtksrlyiowdrocebeto = new Bishop({ x: "e", y: 3 }, "black", "bishop");
+
+  const testArrayeowgyrewihtvnausvtuj = [
+    hderimlmounhsownyksz,
+    yixhnbkcxrarlainbfjm,
+    najiuwodeqswituyntzx,
+    kizwkafllrfvtdutsnob,
+    ybgrkrhbdavvkrqrlgtp,
+    rofhouxlyfgpqbqkvrzm,
+    cgtksrlyiowdrocebeto,
+  ];
+
+  const resultArraymnbkzcwvxgleiozvtvjq: Coordinates[] = [];
+
+  test("белая(ый) слон стоит на f3,белая(ый) слон стоит на g2,белая(ый) слон стоит на g4,белая(ый) слон стоит на e4,белая(ый) слон стоит на e2,черная(ый) слон стоит на g3,черная(ый) слон стоит на e3,белая(ый) слон может пойти на ", () => {
+    expect(
+      hderimlmounhsownyksz.hasMoved(testArrayeowgyrewihtvnausvtuj),
+    ).toEqual(resultArraymnbkzcwvxgleiozvtvjq);
   });
 });

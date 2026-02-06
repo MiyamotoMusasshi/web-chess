@@ -2,9 +2,9 @@ import random
 
 exit_input = str(input('для выхода введите exit: '))
 
-PieceType =["pawn","rook","knight","bishop","queen","king"]
-PieceTypeClass = ["Pawn","Rook","Knight","Bishop","Queen","King"]
-PieceTypeTranslate =["пешка","ладья","король","слон","королева","король"]
+PieceType =["pawn","rook","knight","bishop","queen","king","horse"]
+PieceTypeClass = ["Pawn","Rook","Knight","Bishop","Queen","King","Horse"]
+PieceTypeTranslate =["пешка","ладья","король","слон","королева","король","конь"]
 xMap = 'abcdefgh'
 yMap= '12345678'
 colorMap = ['white','black']

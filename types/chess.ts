@@ -8,4 +8,5 @@ export type PieceType =
   | "knight"
   | "bishop"
   | "queen"
-  | "king";
+  | "king"
+  | "horse";
