@@ -2,6 +2,7 @@ import { Pawn } from "../shapes/Pawn";
 import { Rook } from "../shapes/Rook";
 import { Bishop } from "../shapes/Bishop";
 import { Queen } from "../shapes/Queen";
+import { Horse } from "../shapes/Horse";
 import type { Coordinates } from "@/types/chess";
 
 //тесты белых пешок
@@ -520,5 +521,69 @@ describe("Тесты ферзя", () => {
     expect(
       dltzpqvimdohjpyveupp.hasMoved(testArraygwlzrssgbiwpuuvwbtwv),
     ).toEqual(resultArrayknccftvbpqywfcepwrcg);
+  });
+});
+
+describe("Тест коней", () => {
+  const jnpabbkovbkcxfxijvbp = new Horse({ x: "d", y: 5 }, "white", "horse");
+
+  const testArraynonzxpsmebyzqhodqhpn = [jnpabbkovbkcxfxijvbp];
+
+  const resultArrayjaicnnrgxlmqqxihvwbs = [
+    { x: "b", y: 4 },
+    { x: "b", y: 6 },
+    { x: "c", y: 3 },
+    { x: "c", y: 7 },
+    { x: "e", y: 3 },
+    { x: "e", y: 7 },
+    { x: "f", y: 4 },
+    { x: "f", y: 6 },
+  ];
+
+  test("белая(ый) конь стоит на d5,белая(ый) конь может пойти на b4,b6,c3,c7,e3,e7,f4,f6,", () => {
+    expect(
+      jnpabbkovbkcxfxijvbp.hasMoved(testArraynonzxpsmebyzqhodqhpn),
+    ).toEqual(resultArrayjaicnnrgxlmqqxihvwbs);
+  });
+  const tiardozpaxdctdxzlmrb = new Horse({ x: "h", y: 1 }, "black", "horse");
+
+  const grodkejzibtbjgzxxfxe = new Horse({ x: "f", y: 2 }, "white", "horse");
+
+  const kwlwhyjpxdlsenpwjwdb = new Horse({ x: "g", y: 3 }, "black", "horse");
+
+  const testArraymvhglgyjgtxhrucwdkaj = [
+    tiardozpaxdctdxzlmrb,
+    grodkejzibtbjgzxxfxe,
+    kwlwhyjpxdlsenpwjwdb,
+  ];
+
+  const resultArrayrusdtvfyngqsnolgpchj = [{ x: "f", y: 2 }];
+
+  test("черная(ый) конь стоит на h1,белая(ый) конь стоит на f2,черная(ый) конь стоит на g3,черная(ый) конь может пойти на f2,", () => {
+    expect(
+      tiardozpaxdctdxzlmrb.hasMoved(testArraymvhglgyjgtxhrucwdkaj),
+    ).toEqual(resultArrayrusdtvfyngqsnolgpchj);
+  });
+  const wvlaeciwqjvaupasdzat = new Horse({ x: "a", y: 8 }, "white", "horse");
+
+  const pdiqfinmaoqdebgrjpdn = new Pawn({ x: "b", y: 7 }, "black", "pawn");
+
+  const dzsmztxzijqxgvxebwsp = new Pawn({ x: "c", y: 7 }, "black", "pawn");
+
+  const testArrayfzezppvojgaljjxgllty = [
+    wvlaeciwqjvaupasdzat,
+    pdiqfinmaoqdebgrjpdn,
+    dzsmztxzijqxgvxebwsp,
+  ];
+
+  const resultArrayzvviswezottfprogovnp = [
+    { x: "b", y: 6 },
+    { x: "c", y: 7 },
+  ];
+
+  test("белая(ый) конь стоит на a8,черная(ый) пешка стоит на b7,черная(ый) пешка стоит на c7,белая(ый) конь может пойти на b6,c7,", () => {
+    expect(
+      wvlaeciwqjvaupasdzat.hasMoved(testArrayfzezppvojgaljjxgllty),
+    ).toEqual(resultArrayzvviswezottfprogovnp);
   });
 });
