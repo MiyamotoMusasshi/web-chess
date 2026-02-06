@@ -1,6 +1,7 @@
 import { Pawn } from "../shapes/Pawn";
 import { Rook } from "../shapes/Rook";
 import { Bishop } from "../shapes/Bishop";
+import { Queen } from "../shapes/Queen";
 import type { Coordinates } from "@/types/chess";
 
 //тесты белых пешок
@@ -431,5 +432,93 @@ describe("Тесты слонов", () => {
     expect(
       hderimlmounhsownyksz.hasMoved(testArrayeowgyrewihtvnausvtuj),
     ).toEqual(resultArraymnbkzcwvxgleiozvtvjq);
+  });
+});
+
+describe("Тесты ферзя", () => {
+  const qwxuivsxjexoekbloyke = new Queen({ x: "e", y: 4 }, "white", "queen");
+
+  const testArrayaxkdhxbdahzfgzbhgqpb = [qwxuivsxjexoekbloyke];
+
+  const resultArraysjxygejjyjywaqgrqkzg = [
+    { x: "f", y: 4 },
+    { x: "g", y: 4 },
+    { x: "h", y: 4 },
+    { x: "d", y: 4 },
+    { x: "c", y: 4 },
+    { x: "b", y: 4 },
+    { x: "a", y: 4 },
+    { x: "e", y: 5 },
+    { x: "e", y: 6 },
+    { x: "e", y: 7 },
+    { x: "e", y: 8 },
+    { x: "e", y: 3 },
+    { x: "e", y: 2 },
+    { x: "e", y: 1 },
+    { x: "f", y: 5 },
+    { x: "g", y: 6 },
+    { x: "h", y: 7 },
+    { x: "d", y: 5 },
+    { x: "c", y: 6 },
+    { x: "b", y: 7 },
+    { x: "a", y: 8 },
+    { x: "f", y: 3 },
+    { x: "g", y: 2 },
+    { x: "h", y: 1 },
+    { x: "d", y: 3 },
+    { x: "c", y: 2 },
+    { x: "b", y: 1 },
+  ];
+
+  test("белая(ый) королева стоит на e4,белая(ый) королева может пойти на f4,g4,h4,d4,c4,b4,a4,e5,e6,e7,e8,e3,e2,e1,f5,g6,h7,d5,c6,b7,a8,f3,g2,h1,d3,c2,b1,", () => {
+    expect(
+      qwxuivsxjexoekbloyke.hasMoved(testArrayaxkdhxbdahzfgzbhgqpb),
+    ).toEqual(resultArraysjxygejjyjywaqgrqkzg);
+  });
+  const dltzpqvimdohjpyveupp = new Queen({ x: "e", y: 4 }, "white", "queen");
+
+  const qtrfouukgqsrcterphci = new Pawn({ x: "d", y: 5 }, "black", "pawn");
+
+  const oeanjubbgmsldcpwbxkz = new Pawn({ x: "e", y: 5 }, "black", "pawn");
+
+  const ynpzcivslndmrdibkorv = new Pawn({ x: "f", y: 5 }, "black", "pawn");
+
+  const oicogftjftrcsrahdtqg = new Pawn({ x: "d", y: 4 }, "black", "pawn");
+
+  const rrjvvchtrgjzduwyipoe = new Pawn({ x: "f", y: 4 }, "black", "pawn");
+
+  const tcfaebetoptsrkjvwsve = new Pawn({ x: "d", y: 3 }, "black", "pawn");
+
+  const otklbkcwrqjbuhoelgfz = new Pawn({ x: "e", y: 3 }, "black", "pawn");
+
+  const bqvljndvmfvkwuonraiy = new Pawn({ x: "f", y: 3 }, "black", "pawn");
+
+  const testArraygwlzrssgbiwpuuvwbtwv = [
+    dltzpqvimdohjpyveupp,
+    qtrfouukgqsrcterphci,
+    oeanjubbgmsldcpwbxkz,
+    ynpzcivslndmrdibkorv,
+    oicogftjftrcsrahdtqg,
+    rrjvvchtrgjzduwyipoe,
+    tcfaebetoptsrkjvwsve,
+    otklbkcwrqjbuhoelgfz,
+    bqvljndvmfvkwuonraiy,
+  ];
+
+  const resultArrayknccftvbpqywfcepwrcg = [
+    { x: "f", y: 4 },
+    { x: "d", y: 4 },
+    { x: "e", y: 5 },
+    { x: "e", y: 3 },
+    { x: "f", y: 5 },
+    { x: "d", y: 5 },
+    { x: "f", y: 3 },
+    { x: "d", y: 3 },
+  ];
+
+  test("белая(ый) королева стоит на e4,черная(ый) пешка стоит на d5,черная(ый) пешка стоит на e5,черная(ый) пешка стоит на f5,черная(ый) пешка стоит на d4,черная(ый) пешка стоит на f4,черная(ый) пешка стоит на d3,черная(ый) пешка стоит на e3,черная(ый) пешка стоит на f3,белая(ый) королева может пойти на d5,e5,f5,d4,f4,d3,e3,f3,", () => {
+    expect(
+      dltzpqvimdohjpyveupp.hasMoved(testArraygwlzrssgbiwpuuvwbtwv),
+    ).toEqual(resultArrayknccftvbpqywfcepwrcg);
   });
 });
