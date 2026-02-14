@@ -6,7 +6,10 @@ import type { Color } from "@/types/chess";
 import { Figure } from "./figure";
 
 export class Horse extends Figure {
-  public hasMoved(figures: Figure[]): Coordinates[] {
+  public hasMoved(
+    figures: Figure[],
+    isProtection: boolean = false,
+  ): Coordinates[] {
     const moves: Coordinates[] = [];
 
     let xNumber = this.xMap.indexOf(this.getCordinates().x);
@@ -48,7 +51,10 @@ export class Horse extends Figure {
               x: this.xMap[possibleX],
               y: possibleY as CoordinatesY,
             });
-          } else if (isBlocked && isOppositeColor) {
+          } else if (
+            (isBlocked && isOppositeColor) ||
+            (isBlocked && isProtection && !isOppositeColor)
+          ) {
             moves.push({
               x: this.xMap[possibleX],
               y: possibleY as CoordinatesY,

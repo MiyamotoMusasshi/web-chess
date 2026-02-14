@@ -6,7 +6,10 @@ import type { Color } from "@/types/chess";
 import { Figure } from "./figure";
 
 export class Queen extends Figure {
-  public hasMoved(figures: Figure[]): Coordinates[] {
+  public hasMoved(
+    figures: Figure[],
+    isProtection: boolean = false,
+  ): Coordinates[] {
     const moves: Coordinates[] = [];
 
     let xNumber = this.xMap.indexOf(this.getCordinates().x);
@@ -30,7 +33,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: this.getCordinates().y });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -60,7 +66,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: this.getCordinates().y });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -88,7 +97,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.getCordinates().x, y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -118,7 +130,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.getCordinates().x, y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -149,7 +164,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -181,7 +199,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -213,7 +234,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {
@@ -245,7 +269,10 @@ export class Queen extends Figure {
         );
       });
 
-      if (isBlocked && isOppositeColor) {
+      if (
+        (isBlocked && isOppositeColor) ||
+        (isBlocked && isProtection && !isOppositeColor)
+      ) {
         moves.push({ x: this.xMap[xNumber], y: yNumber as CoordinatesY });
         break;
       } else if (isBlocked && !isOppositeColor) {

@@ -6,7 +6,10 @@ import type { Color } from "@/types/chess";
 import { Figure } from "./figure";
 
 export class Pawn extends Figure {
-  public hasMoved(figures: Figure[]): Coordinates[] {
+  public hasMoved(
+    figures: Figure[],
+    isProtection: boolean = false,
+  ): Coordinates[] {
     const moves: Coordinates[] = [];
 
     let xNumber = this.xMap.indexOf(this.getCordinates().x);
@@ -16,7 +19,7 @@ export class Pawn extends Figure {
 
     const newY = this.getCordinates().y + direction;
 
-    if (newY <= 8 && newY >= 1) {
+    if (newY <= 8 && newY >= 1 && !isProtection) {
       const isBlocked = figures.some((figure) => {
         return (
           figure.getCordinates().y == newY &&
@@ -59,6 +62,18 @@ export class Pawn extends Figure {
       });
 
       if (targetFigure) {
+        moves.push({
+          x: this.xMap[move.x] as CoordinatesX,
+          y: move.y as CoordinatesY,
+        });
+      }
+      if (
+        isProtection &&
+        move.x < 8 &&
+        move.x >= 0 &&
+        move.y <= 8 &&
+        move.y >= 1
+      ) {
         moves.push({
           x: this.xMap[move.x] as CoordinatesX,
           y: move.y as CoordinatesY,

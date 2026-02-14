@@ -36,7 +36,10 @@ export abstract class Figure {
     this.color = color;
   }
 
-  public abstract hasMoved(figures: Figure[]): Coordinates[];
+  public abstract hasMoved(
+    figures: Figure[],
+    isProtection: boolean,
+  ): Coordinates[];
 
   public destroy() {
     this.cordinates = null as any;
