@@ -3,7 +3,9 @@ import { Rook } from "../shapes/Rook";
 import { Bishop } from "../shapes/Bishop";
 import { Queen } from "../shapes/Queen";
 import { Horse } from "../shapes/Horse";
+import { King } from "../shapes/King";
 import type { Coordinates } from "@/types/chess";
+import checkAllAtackedCell from "../sub-function/checkAllAtackedCell";
 
 //тесты белых пешок
 describe("белые пешки", () => {
@@ -585,5 +587,86 @@ describe("Тест коней", () => {
     expect(
       wvlaeciwqjvaupasdzat.hasMoved(testArrayfzezppvojgaljjxgllty),
     ).toEqual(resultArrayzvviswezottfprogovnp);
+  });
+});
+
+describe("Король", () => {
+  const latzfnqtamkuhjmkurta = new King({ x: "e", y: 5 }, "white", "king");
+
+  const testArrayjavxqqxssxyprosenzur = [latzfnqtamkuhjmkurta];
+
+  const resultArraylbmnbrtmlremsxjdknfw = [
+    { x: "d", y: 4 },
+    { x: "d", y: 5 },
+    { x: "d", y: 6 },
+    { x: "e", y: 4 },
+    { x: "e", y: 6 },
+    { x: "f", y: 4 },
+    { x: "f", y: 5 },
+    { x: "f", y: 6 },
+  ];
+
+  test("белая(ый) король стоит на e5,белая(ый) король может пойти на d4,d5,d6,e4,e5,e6,f4,f5,", () => {
+    expect(
+      latzfnqtamkuhjmkurta.hasMoved(testArrayjavxqqxssxyprosenzur, false, []),
+    ).toEqual(resultArraylbmnbrtmlremsxjdknfw);
+  });
+  const aqljmfwtxqlhlojgzeek = new King({ x: "a", y: 1 }, "black", "king");
+
+  const testArraydkspvrdskwfqnafwptzr = [aqljmfwtxqlhlojgzeek];
+
+  const resultArraycfwvrppgdtcowehrhbwv = [
+    { x: "a", y: 2 },
+    { x: "b", y: 1 },
+    { x: "b", y: 2 },
+  ];
+
+  test("черная(ый) король стоит на a1,черная(ый) король может пойти на a2,b1,b2,", () => {
+    expect(
+      aqljmfwtxqlhlojgzeek.hasMoved(testArraydkspvrdskwfqnafwptzr, false, []),
+    ).toEqual(resultArraycfwvrppgdtcowehrhbwv);
+  });
+  const bimngyhyllokkacesyoo = new King({ x: "g", y: 1 }, "white", "king");
+
+  const tjwedkffwbevcozongbc = new Queen({ x: "f", y: 3 }, "black", "queen");
+
+  const testArraywtzgfmzlteuosyigrxly = [
+    bimngyhyllokkacesyoo,
+    tjwedkffwbevcozongbc,
+  ];
+
+  const resultArrayilwmekajnlogrshosfje = [{ x: "h", y: 2 }];
+
+  test("белая(ый) король стоит на g1,черная(ый) королева стоит на f3,белая(ый) король может пойти на h2,", () => {
+    expect(
+      bimngyhyllokkacesyoo.hasMoved(
+        testArraywtzgfmzlteuosyigrxly,
+        false,
+        checkAllAtackedCell(testArraywtzgfmzlteuosyigrxly, "black"),
+      ),
+    ).toEqual(resultArrayilwmekajnlogrshosfje);
+  });
+  const msphpoiwanzkowabphsp = new King({ x: "e", y: 8 }, "black", "king");
+
+  const fwlhdjxscegzqyrkahye = new Pawn({ x: "e", y: 7 }, "white", "pawn");
+
+  const eecfhgihfhhyihvndklp = new King({ x: "e", y: 6 }, "white", "king");
+
+  const testArrayvtwifxlddpezvywjilim = [
+    msphpoiwanzkowabphsp,
+    fwlhdjxscegzqyrkahye,
+    eecfhgihfhhyihvndklp,
+  ];
+
+  const resultArraykkvlofwufgauxzwojpny: Coordinates[] = [];
+
+  test("черная(ый) король стоит на e8,белая(ый) пешка стоит на e7,белая(ый) король стоит на e6,черная(ый) король может пойти на ", () => {
+    expect(
+      msphpoiwanzkowabphsp.hasMoved(
+        testArrayvtwifxlddpezvywjilim,
+        false,
+        checkAllAtackedCell(testArrayvtwifxlddpezvywjilim, "white"),
+      ),
+    ).toEqual(resultArraykkvlofwufgauxzwojpny);
   });
 });

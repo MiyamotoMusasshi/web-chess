@@ -7,7 +7,7 @@ export default function checkAllAtackedCell(figures: Figure[], color: Color) {
 
   figures.map((figure) => {
     if (figure.getColor() == color) {
-      figure.hasMoved(figures, true).map((cell) => {
+      figure.hasMoved(figures, true, []).map((cell) => {
         const isDublicate = atackedCells.find((f) => {
           return cell.x == f.x && cell.y == f.y;
         });

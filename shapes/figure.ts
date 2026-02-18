@@ -39,6 +39,7 @@ export abstract class Figure {
   public abstract hasMoved(
     figures: Figure[],
     isProtection: boolean,
+    atackedCells: Coordinates[],
   ): Coordinates[];
 
   public destroy() {
