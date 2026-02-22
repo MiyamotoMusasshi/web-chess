@@ -3,13 +3,16 @@ import type { CoordinatesX } from "@/types/chess";
 import type { CoordinatesY } from "@/types/chess";
 import type { Color } from "@/types/chess";
 import type { PieceType } from "@/types/chess";
+import { figures } from "@/types/chess";
+import { renderFigures } from "@/types/chess";
+import { Span } from "next/dist/trace";
 
 //Создаю класс клетки, т.к считаю, что в будущем можно будет использовать для перемещения фигур
 class Cell {
   private cordinates: Coordinates;
-  private color: Color;
+  private color: string;
 
-  constructor(x: CoordinatesX, y: CoordinatesY, color: Color) {
+  constructor(x: CoordinatesX, y: CoordinatesY, color: string) {
     this.cordinates = { x: x, y: y };
     this.color = color;
   }
@@ -33,7 +36,7 @@ class Cell {
 //Создаю массивы, чтобы нарисовать все клетки на доске
 const alfX: CoordinatesX[] = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const alfY: CoordinatesY[] = [1, 2, 3, 4, 5, 6, 7, 8];
-const blackWhite: Color[] = ["black", "white"];
+const blackWhite = ["#b58863", "#f0d9b5"];
 
 //реверсы нужно для правильного расположения клеток
 alfX.reverse();
@@ -57,19 +60,58 @@ export default function Home() {
           gridTemplateRows: "repeat(8, 75px)",
         }}
       >
-        {cells.map((cell: Cell, index: number) => (
-          <div
-            className="w-[75px] h-[75px] bg-black rounded-[1px]"
-            key={index}
-            style={{
-              backgroundColor: cell.getColor(),
-              color: "gray",
-              userSelect: "none",
-            }}
-          >
-            {cell.getCordinates().x + "," + cell.getCordinates().y}
-          </div>
-        ))}
+        {cells.map((cell: Cell, index: number) => {
+          const figure = figures.find((figure) => {
+            return (
+              figure.getCordinates().x == cell.getCordinates().x &&
+              figure.getCordinates().y == cell.getCordinates().y
+            );
+          });
+
+          const figureSymbol = figure ? renderFigures[figure.getType()] : null;
+
+          return (
+            <div
+              className="w-[75px] h-[75px] bg-black rounded-[1px]"
+              key={index}
+              style={{
+                backgroundColor: cell.getColor(),
+                color: "gray",
+                userSelect: "none",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: "2px",
+                  left: "2px",
+                  fontSize: "14px",
+                  color: "gray",
+                }}
+              >
+                {cell.getCordinates().x + "," + cell.getCordinates().y}
+              </div>
+              {figure ? (
+                <span
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "56px",
+                    cursor: "pointer",
+                    color: figure.getColor(),
+                  }}
+                >
+                  {figureSymbol}
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
+          );
+        })}
       </div>
     </main>
   );
