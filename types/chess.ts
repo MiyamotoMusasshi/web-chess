@@ -19,12 +19,12 @@ export type PieceType =
   | "king"
   | "horse";
 
-export interface Move {
+export type Move = {
   from: Coordinates;
   to: Coordinates;
   type: PieceType;
   color: Color;
-}
+};
 
 export const renderFigures = {
   "king": "♚",

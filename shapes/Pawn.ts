@@ -3,6 +3,7 @@ import type { CoordinatesX } from "@/types/chess";
 import type { CoordinatesY } from "@/types/chess";
 import type { PieceType } from "@/types/chess";
 import type { Color } from "@/types/chess";
+import { Move } from "@/types/chess";
 import { Figure } from "./figure";
 
 export class Pawn extends Figure {
@@ -82,5 +83,48 @@ export class Pawn extends Figure {
     });
 
     return moves;
+  }
+
+  isPassant(moves: Move[], figures: Figure[]): Coordinates | Object {
+    let move = {};
+    if (
+      (this.getCordinates().y == 5 && this.getColor() == "white") ||
+      (this.getCordinates().y == 4 && this.getColor() == "black")
+    ) {
+      const lastMove = moves[moves.length - 1];
+      const isPotentialPassant = figures.find((figure) => {
+        return (
+          (this.xMap.indexOf(this.getCordinates().x) + 1 ==
+            this.xMap.indexOf(figure.getCordinates().x) &&
+          this.getColor() != figure.getColor() &&
+          figure.getType() == "pawn" &&
+          this.getColor() == "white"
+            ? figure.getCordinates().y == 5
+            : figure.getCordinates().y == 4) ||
+          (this.xMap.indexOf(this.getCordinates().x) - 1 ==
+            this.xMap.indexOf(figure.getCordinates().x) &&
+          this.getColor() != figure.getColor() &&
+          figure.getType() == "pawn" &&
+          this.getColor() == "white"
+            ? figure.getCordinates().y == 5
+            : figure.getCordinates().y == 4)
+        );
+      });
+
+      const isPotentialPassant2 =
+        this.getColor() == "white"
+          ? lastMove.from.y == 7 &&
+            lastMove.type == "pawn" &&
+            lastMove.color != this.getColor() &&
+            lastMove.to.y == 5
+          : lastMove.from.y == 2 &&
+            lastMove.type == "pawn" &&
+            lastMove.color != this.getColor() &&
+            lastMove.to.y == 4;
+      if (isPotentialPassant && isPotentialPassant2) {
+        move = { x: lastMove.from.x, y: this.getColor() == "white" ? 6 : 3 };
+      }
+    }
+    return move;
   }
 }

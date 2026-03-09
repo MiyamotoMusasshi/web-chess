@@ -4,6 +4,7 @@ import { Rook } from "../shapes/Rook";
 import { Bishop } from "../shapes/Bishop";
 import { Queen } from "../shapes/Queen";
 import { Horse } from "../shapes/Horse";
+import type { Move } from "../types/chess";
 import type { Coordinates } from "@/types/chess";
 
 describe("Различные функции", () => {
@@ -79,5 +80,37 @@ describe("Различные функции", () => {
 
   test("Проверка для черных фигур: пешки,ферзь,слон", () => {
     expect(checkAllAtackedCell(testArray2, "black")).toEqual(resultArray2);
+  });
+
+  const moves: Move[] = [
+    {
+      from: { x: "h", y: 7 },
+      to: { x: "h", y: 5 },
+      type: "pawn",
+      color: "black",
+    },
+  ];
+  const testPawn1 = new Pawn({ x: "g", y: 5 }, "white", "pawn");
+
+  const figures = [testPawn1, new Pawn({ x: "h", y: 5 }, "black", "pawn")];
+
+  test("Проверка взятия на проходе для белой пешки с g5, черная пошла с h7 на h5", () => {
+    expect(testPawn1.isPassant(moves, figures)).toEqual({ x: "h", y: 6 });
+  });
+
+  const moves2: Move[] = [
+    {
+      from: { x: "a", y: 2 },
+      to: { x: "a", y: 4 },
+      type: "pawn",
+      color: "white",
+    },
+  ];
+  const testPawn2 = new Pawn({ x: "b", y: 4 }, "black", "pawn");
+
+  const figures2 = [testPawn2, new Pawn({ x: "a", y: 4 }, "white", "pawn")];
+
+  test("Проверка взятия на проходе для черной пешки с a4, белая пошла с a2 на a4", () => {
+    expect(testPawn2.isPassant(moves2, figures2)).toEqual({ x: "a", y: 3 });
   });
 });
