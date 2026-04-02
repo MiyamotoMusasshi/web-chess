@@ -6,6 +6,8 @@ import { Queen } from "../shapes/Queen";
 import { Horse } from "../shapes/Horse";
 import type { Move } from "../types/chess";
 import type { Coordinates } from "@/types/chess";
+import { King } from "../shapes/King";
+import { Figure } from "../shapes/figure";
 
 describe("Различные функции", () => {
   const testArray1 = [
@@ -112,5 +114,75 @@ describe("Различные функции", () => {
 
   test("Проверка взятия на проходе для черной пешки с a4, белая пошла с a2 на a4", () => {
     expect(testPawn2.isPassant(moves2, figures2)).toEqual({ x: "a", y: 3 });
+  });
+
+  const testKingWhite = new King({ x: "e", y: 1 }, "white", "king");
+  const testKingBlack = new King({ x: "e", y: 8 }, "black", "king");
+  const testArray3: Figure[] = [
+    testKingWhite,
+    testKingBlack,
+    new Rook({ x: "h", y: 1 }, "white", "rook"),
+    new Rook({ x: "a", y: 1 }, "white", "rook"),
+    new Rook({ x: "h", y: 8 }, "black", "rook"),
+    new Rook({ x: "a", y: 8 }, "black", "rook"),
+    new Pawn({ x: "h", y: 2 }, "white", "pawn"),
+    new Pawn({ x: "a", y: 2 }, "white", "pawn"),
+    new Pawn({ x: "h", y: 7 }, "black", "pawn"),
+    new Pawn({ x: "a", y: 7 }, "black", "pawn"),
+  ];
+
+  const testAtackedCellsWhite: Coordinates[] = checkAllAtackedCell(
+    testArray3,
+    "white",
+  );
+  const testAtackedCellsBlack: Coordinates[] = checkAllAtackedCell(
+    testArray3,
+    "black",
+  );
+
+  const testMoves2: Move[] = [];
+
+  test("Проверка рокировки короткой для белых(пусто)", () => {
+    expect(
+      testKingWhite.isCastlingSmall(
+        testArray3,
+        testAtackedCellsBlack,
+        testMoves2,
+        "white",
+      ),
+    ).toEqual([{ x: "g", y: 1 }]);
+  });
+
+  test("Проверка рокировки длинной для белых(пусто)", () => {
+    expect(
+      testKingWhite.isCastlingBig(
+        testArray3,
+        testAtackedCellsBlack,
+        testMoves2,
+        "white",
+      ),
+    ).toEqual([{ x: "c", y: 1 }]);
+  });
+
+  test("Проверка рокировки короткой для белых(пусто)", () => {
+    expect(
+      testKingWhite.isCastlingSmall(
+        testArray3,
+        testAtackedCellsWhite,
+        testMoves2,
+        "black",
+      ),
+    ).toEqual([{ x: "g", y: 8 }]);
+  });
+
+  test("Проверка рокировки длинной для белых(пусто)", () => {
+    expect(
+      testKingWhite.isCastlingBig(
+        testArray3,
+        testAtackedCellsWhite,
+        testMoves2,
+        "black",
+      ),
+    ).toEqual([{ x: "c", y: 8 }]);
   });
 });
